@@ -7,13 +7,22 @@ import { TableKit } from "@tiptap/extension-table";
 import Image from "@tiptap/extension-image";
 import { ImageResize } from "tiptap-extension-resize-image";
 import { useEditorStore } from "@/store/useEditorStore";
-import { TextStyle, FontFamily, Color } from "@tiptap/extension-text-style";
+import {
+  TextStyle,
+  FontFamily,
+  Color,
+  TextStyleKit,
+  LineHeight,
+} from "@tiptap/extension-text-style";
 import Highlight from "@tiptap/extension-highlight";
+import TextAlign from "@tiptap/extension-text-align";
+import Ruler from "./Ruler";
 
 export const Editor = () => {
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
+    immediatelyRender: false,
     onCreate: ({ editor }) => {
       setEditor(editor);
     },
@@ -40,7 +49,7 @@ export const Editor = () => {
     },
     editorProps: {
       attributes: {
-        style: "padding-left: 56px; padding-right: 56px;",
+        style: "padding-left: 56px; padding-right: 56px !important;",
         class:
           "focus:outline-none print:border-0 bg-white border-[#c7c7c7] border-1 flex flex-col min-h-[1050px] w-204 pt-10 pr-14 pb-10 cursor-text tiptap",
       },
@@ -56,9 +65,14 @@ export const Editor = () => {
       ImageResize,
       Image,
       FontFamily,
+      TextStyleKit,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
       TextStyle,
       Highlight.configure({ multicolor: true }),
       Color,
+      LineHeight,
     ],
     content: `
         <table>
@@ -76,11 +90,10 @@ export const Editor = () => {
           </tbody>
         </table>
       `,
-    // Don't render immediately on the server to avoid SSR issues
-    immediatelyRender: false,
   });
   return (
     <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:p-0 print:bg-white print:overflow-visible w-204">
+      <Ruler />
       <div className="min-w-max flex justify-center w-204 py-4 print:py-0">
         <EditorContent editor={editor} />
       </div>
