@@ -64,7 +64,6 @@ export const Editor = () => {
       TableKit,
       ImageResize,
       Image,
-      FontFamily,
       TextStyleKit,
       TextAlign.configure({
         types: ["heading", "paragraph"],
@@ -92,7 +91,7 @@ export const Editor = () => {
       `,
   });
   return (
-    <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:p-0 print:bg-white print:overflow-visible w-204">
+    <div className="size-full overflow-x-auto bg-[#f9fbfd] px-4 print:p-0 print:bg-white print:overflow-visible w-max">
       <Ruler />
       <div className="min-w-max flex justify-center w-204 py-4 print:py-0">
         <EditorContent editor={editor} />

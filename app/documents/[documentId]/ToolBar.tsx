@@ -701,7 +701,7 @@ const ToolBar = () => {
     ],
   ];
   return (
-    <div className="w-full bg-[#f1f4f9] px-2.5 py-1 rounded-[24px] min-h-[40px] flex items-center! justify-center gap-x-0.5 overflow-x-auto">
+    <div className="w-full bg-[#f1f4f9] px-2.5 py-.5 rounded-[24px] min-h-[40px] flex items-center! justify-center gap-x-0.5 overflow-x-auto">
       {sections[0].map((section) => (
         <ToolBarButton
           key={section.label}
